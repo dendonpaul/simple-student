@@ -130,8 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <td>
                             <button name="edit" id="<?php echo 'edit' . $row['id'] ?>" onclick="edit(<?php echo $row['id']; ?>)">Edit</button>
-                            <button name="update" id="<?php echo 'update' . $row['id'] ?>" onclick="update(<?php echo $row['id']; ?>)" disabled>Update</button>
-                            <button name="delete" id="<?php echo 'delete' . $row['id'] ?>" onclick="deleteData(<?php echo $row['id']; ?>)" disabled>Delete</button>
+                            <button style="color:blue" name="update" id="<?php echo 'update' . $row['id'] ?>" onclick="update(<?php echo $row['id']; ?>)" disabled>Update</button>
+                            <button style=" color:red" name="delete" id="<?php echo 'delete' . $row['id'] ?>" onclick="deleteData(<?php echo $row['id']; ?>)" disabled>Delete</button>
                         </td>
                     </tr>
             <?php
