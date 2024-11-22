@@ -18,8 +18,12 @@ if (isset($_POST['add'])) {
     $grade = isset($_POST['grade']) ? $_POST['grade'] : "";
     $age = isset($_POST['age']) ? $_POST['age'] : "";
 
-    $sql = "INSERT INTO Students(name,age,grade) VALUES('$name','$age','$grade')";
-    $conn->query($sql);
+    //$sql = "INSERT INTO Students(name,age,grade) VALUES('$name','$age','$grade')";
+    // $conn->query($sql);
+    $sql = "INSERT INTO Students(name,age,grade) VALUES(?,?,?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('sis', $name, $age, $grade);
+    $stmt->execute();
 }
 
 //delete and updatedata
@@ -28,8 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['actionB']) && $_POST['actionB'] == 'delete') {
         $id = $_POST['id'];
 
-        $sql = "DELETE from Students where id=$id";
-        $conn->query($sql);
+        // $sql = "DELETE from Students where id=$id";
+        // $conn->query($sql);
+
+        $sql = "DELETE from Students WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
     }
 
     //Update
@@ -39,8 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $grade = isset($_POST['grade']) ? $_POST['grade'] : "";
         $age = isset($_POST['age']) ? $_POST['age'] : "";
 
-        $sql = "UPDATE Students SET name='$name', age='$age', grade='$grade' WHERE id='$id'";
-        $conn->query($sql);
+        // $sql = "UPDATE Students SET name='$name', age='$age', grade='$grade' WHERE id='$id'";
+        // $conn->query($sql);
+
+        $sql = "UPDATE Students SET name=?, age=?, grade=? WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sisi', $name, $age, $grade, $id);
+        $stmt->execute();
     }
 }
 
