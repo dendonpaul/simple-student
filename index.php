@@ -24,6 +24,7 @@ if (isset($_POST['add'])) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('sis', $name, $age, $grade);
     $stmt->execute();
+    $stmt->close();
 }
 
 //delete and updatedata
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $id);
         $stmt->execute();
+        $stmt->close();
     }
 
     //Update
@@ -55,8 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('sisi', $name, $age, $grade, $id);
         $stmt->execute();
+        $stmt->close();
     }
 }
+
+
 
 ?>
 
@@ -151,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
                 }
             }
-
+            $conn->close();
             ?>
         </tbody>
     </table>
