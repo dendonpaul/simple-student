@@ -1,12 +1,12 @@
 <?php
 
-require_once('./core/Database.php');
+require_once 'core/Database.php';
 
 class UserModel
 {
     private $db;
 
-    private function _construct()
+    public function __construct()
     {
         $this->db = Database::getInstance();
     }
@@ -14,9 +14,8 @@ class UserModel
     public function getAllUsers()
     {
         $sql = "SELECT * from Students";
-        $stmt = $this->db->query($sql);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $row;
+        $stmt = $this->db->prepare("SELECT * FROM Students");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

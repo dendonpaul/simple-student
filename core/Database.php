@@ -5,13 +5,11 @@ class Database
     private static $instance = null;
     private $pdo;
 
-    private $dsn = "mysql:host=localhost;dbname=SchoolDB";
-    private $dbuser = 'denny';
-    private $dbpass = 'password';
-
-    private function _construct()
+    private function __construct()
     {
-        $this->pdo = new PDO($dsn, $dbuser, $dbpass);
+
+
+        $this->pdo = new PDO("mysql:host=localhost;dbname=SchoolDB", "denny", "password");
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
