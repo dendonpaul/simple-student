@@ -17,15 +17,14 @@ class UserController
                 $id = $_POST['id'];
                 $this->deleteUser($id);
             }
-        }
+            //Check post details and add new student
+            if (isset($_POST['add'])) {
+                $name = isset($_POST['name']) ? $_POST['name'] : "";
+                $grade = isset($_POST['grade']) ? $_POST['grade'] : "";
+                $age = isset($_POST['age']) ? $_POST['age'] : "";
 
-        //Check post details and add new student
-        if (isset($_POST['add'])) {
-            $name = isset($_POST['name']) ? $_POST['name'] : "";
-            $grade = isset($_POST['grade']) ? $_POST['grade'] : "";
-            $age = isset($_POST['age']) ? $_POST['age'] : "";
-
-            $this->addUser($name, $age, $grade);
+                $this->addUser($name, $age, $grade);
+            }
         }
     }
 
@@ -33,11 +32,13 @@ class UserController
     {
         $model = new UserModel();
         $model->addUser($name, $age, $grade);
+        header('Location: index.php');
     }
 
     public function deleteUser($id)
     {
         $model = new UserModel();
         $model->deleteUser($id);
+        header('Location: index.php');
     }
 }
