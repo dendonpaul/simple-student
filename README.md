@@ -4,4 +4,6 @@ The Update and Delete button are active only when clicking edit button of the re
 
 All the edit buttons including the clicked one will be disabled when clicking on edit button.
 
-You will learn about using PHP and MySQLi connection to Create, Delete and Update data to Database.
+Using MVC Architecture.
+
+You will learn about using PHP and MySQLi/PDO connection to Create, Delete and Update data to Database.
