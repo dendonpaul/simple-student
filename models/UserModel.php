@@ -32,4 +32,11 @@ class UserModel
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':name' => $name, ':age' => $age, ':grade' => $grade]);
     }
+
+    public function updateUser($id, $name, $age, $grade)
+    {
+        $sql = "UPDATE Students SET name=:name, age=:age, grade=:grade where id=:id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':name' => $name, ':age' => $age, ':grade' => $grade, ':id' => $id]);
+    }
 }

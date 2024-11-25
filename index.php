@@ -10,6 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $_POST['id'];
         $controller->deleteUser($id);
     }
+
+    //Check if update request
+    if (isset($_POST['actionB']) && $_POST['actionB'] == 'update') {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $age = $_POST['age'];
+        $grade = $_POST['grade'];
+
+        $controller->updateUser($id, $name, $age, $grade);
+    }
     //Check post details and add new student
     if (isset($_POST['add'])) {
         $name = isset($_POST['name']) ? $_POST['name'] : "";
