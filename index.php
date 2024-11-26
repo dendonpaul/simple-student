@@ -10,6 +10,14 @@ if (isset($_SESSION['id'])) {
     echo "No session";
 }
 
+//Logout
+if (isset($_GET['action']) && $_GET['action'] == "logout") {
+    session_unset();
+    session_destroy();
+
+    header("Location: ./index.php");
+}
+
 if (!$loggedIn) {
     //load LoginController
     require_once "controllers/LoginController.php";

@@ -37,6 +37,13 @@
 <body>
 
     <h2 style="text-align: center;">Student Management</h2>
+    <br />
+    <br />
+    <div>
+        <a href="./index.php?action=logout">Logout</a>
+    </div>
+    <br />
+    <br />
 
     <!-- Add Record Form -->
     <form action="" method="POST" style="text-align: center; margin-bottom: 20px;">
