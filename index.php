@@ -2,7 +2,13 @@
 
 //check if logged in by verifying cookies or sessions
 $loggedIn = false;
-echo $_SESSION['username'];
+
+session_start();
+if (isset($_SESSION['id'])) {
+    $loggedIn = true;
+} else {
+    echo "No session";
+}
 
 if (!$loggedIn) {
     //load LoginController

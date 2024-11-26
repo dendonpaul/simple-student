@@ -27,10 +27,9 @@ class LoginController
     public function loginUser($username, $password)
     {
         $result = $this->model->loginUser($username, $password);
-
-        if ($result['password'] && $result['password'] === $password) {
-            session_start();
-            $_SESSION['username'] = $result['id'];
+        session_start();
+        if (isset($result[0]['password']) && $result[0]['password'] === $password) {
+            $_SESSION['id'] = $result[0]['id'];
         }
     }
 }
