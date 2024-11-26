@@ -3,11 +3,10 @@
 //check if logged in by verifying cookies or sessions
 $loggedIn = false;
 
+//checking session to login
 session_start();
 if (isset($_SESSION['id'])) {
     $loggedIn = true;
-} else {
-    echo "No session";
 }
 
 //Logout

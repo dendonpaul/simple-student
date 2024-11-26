@@ -31,6 +31,11 @@
         .result-title {
             text-align: center;
         }
+
+        .menu li {
+            display: inline;
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -40,7 +45,11 @@
     <br />
     <br />
     <div>
-        <a href="./index.php?action=logout">Logout</a>
+        <ul class="menu">
+            <li><a href="./index.php?action=logout">Logout</a></li>
+            <li><a href="./index.php?action=profile">Profile</a></li>
+        </ul>
+
     </div>
     <br />
     <br />

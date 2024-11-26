@@ -26,10 +26,16 @@ function edit(id){
 
 //Delete function
 function deleteData(id){
-    let form = document.querySelector(`#form${id}`);
-    let actionB = document.querySelector(`#actionB${id}`);
-    actionB.value='delete';
-    form.submit();
+    let confirmText = "Are you sure you want to delete the Student?";
+    if(confirm(confirmText)==true){
+        let form = document.querySelector(`#form${id}`);
+        let actionB = document.querySelector(`#actionB${id}`);
+
+        actionB.value='delete';
+        form.submit();
+    }else{
+        return false;
+    }
 }
 
 //Update function
