@@ -2,6 +2,7 @@
 
 //check if logged in by verifying cookies or sessions
 $loggedIn = false;
+echo $_SESSION['username'];
 
 if (!$loggedIn) {
     //load LoginController
@@ -17,7 +18,14 @@ if (!$loggedIn) {
             $password = $_POST['password'];
 
             $loginController->loginRegister($username, $email, $password);
-            $loggedIn = true;
+        }
+
+        //Login POST data
+        if (isset($_GET['action']) && $_GET['action'] == 'login') {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $loginController->loginUser($username, $password);
         }
     }
 

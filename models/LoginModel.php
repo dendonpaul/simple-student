@@ -10,10 +10,20 @@ class LoginModel
         $this->db = Database::getInstance();
     }
 
+    //Register User Model function
     public function loginRegister($username, $email, $password)
     {
         $sql = "INSERT into LoginDetails (username, email, password) VALUES (:username,:email,:password)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':username' => $username, ':email' => $email, ':password' => $password]);
+    }
+
+    //Login user Model function
+    public function loginUser($username, $password)
+    {
+        $sql = "SELECT * FROM LoginDetails WHERE username=:username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['username' => $username]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
