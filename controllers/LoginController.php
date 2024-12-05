@@ -19,8 +19,15 @@ class LoginController
     //Register Function
     public function loginRegister($username, $email, $password)
     {
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $this->model->loginRegister($username, $email, $password);
+
+        //check if username and email exists
+        if ($this->loginDuplicate($username, $email) == true) {
+            echo "User Already exists";
+            return false;
+        } else {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $this->model->loginRegister($username, $email, $password);
+        }
     }
 
     //Login Function
@@ -32,5 +39,11 @@ class LoginController
 
             header("Location: ./index.php");
         }
+    }
+
+    //Check duplicate user
+    public function loginDuplicate($username, $email)
+    {
+        return $this->model->loginDuplicate($username, $email);
     }
 }

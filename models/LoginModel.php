@@ -26,4 +26,12 @@ class LoginModel
         $stmt->execute(['username' => $username]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    //Check duplicate username and email
+    public function loginDuplicate($username, $email)
+    {
+        $sql = "Select * from LoginDetails where email = :email OR username = :username";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute(['email' => $email, 'username' => $username]);
+    }
 }
