@@ -26,6 +26,7 @@ function edit(id){
 
 //Delete function
 function deleteData(id){
+
     let confirmText = "Are you sure you want to delete the Student?";
     if(confirm(confirmText)==true){
         let form = document.querySelector(`#form${id}`);

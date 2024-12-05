@@ -19,7 +19,7 @@ class LoginController
     //Register Function
     public function loginRegister($username, $email, $password)
     {
-        // $model = new LoginModel();
+        $password = password_hash($password, PASSWORD_DEFAULT);
         $this->model->loginRegister($username, $email, $password);
     }
 
@@ -27,7 +27,7 @@ class LoginController
     public function loginUser($username, $password)
     {
         $result = $this->model->loginUser($username, $password);
-        if (isset($result[0]['password']) && $result[0]['password'] === $password) {
+        if (isset($result[0]['password']) && password_verify($password, $result[0]['password'])) {
             $_SESSION['id'] = $result[0]['id'];
 
             header("Location: ./index.php");

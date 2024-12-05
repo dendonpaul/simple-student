@@ -4,6 +4,8 @@
 $loggedIn = false;
 
 //checking session to login
+ini_set('session.cookie_lifetime', 0);
+ini_set("session.cache_expire", 0);
 session_start();
 if (isset($_SESSION['id'])) {
     $loggedIn = true;

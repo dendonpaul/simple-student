@@ -95,6 +95,7 @@
                     <td>
                         <button name="edit" id="<?php echo 'edit' . $row['id'] ?>" onclick="edit(<?php echo $row['id']; ?>)">Edit</button>
                         <button style="color:blue" name="update" id="<?php echo 'update' . $row['id'] ?>" onclick="update(<?php echo $row['id']; ?>)" disabled>Update</button>
+
                         <button style=" color:red" name="delete" id="<?php echo 'delete' . $row['id'] ?>" onclick="deleteData(<?php echo $row['id']; ?>)" disabled>Delete</button>
                     </td>
                 </tr>
@@ -103,7 +104,7 @@
             ?>
         </tbody>
     </table>
-    <script type="text/javascript" src="./script.js"></script>
+    <script type=" text/javascript" src="./script.js"></script>
 </body>
 
 </html>
