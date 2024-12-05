@@ -21,7 +21,7 @@ class LoginController
     {
 
         //check if username and email exists
-        if ($this->loginDuplicate($username, $email) == true) {
+        if (!empty($this->loginDuplicate($username, $email))) {
             echo "User Already exists";
             return false;
         } else {
