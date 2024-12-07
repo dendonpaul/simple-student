@@ -21,9 +21,9 @@ class LoginController
     {
 
         //check if username and email exists
-        if (!empty($this->loginDuplicate($username, $email))) {
-            echo "User Already exists";
-            return false;
+        $userExists = $this->loginDuplicate($username, $email);
+        if (is_string($userExists)) {
+            echo $userExists;
         } else {
             $password = password_hash($password, PASSWORD_DEFAULT);
             $this->model->loginRegister($username, $email, $password);
