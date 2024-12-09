@@ -50,4 +50,27 @@ class LoginModel
             return true;
         }
     }
+
+    //Record Error Login
+    public function recordErrorLogin($username)
+    {
+        $sql = "INSERT INTO login_attempts (username) VALUES (:username)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':username' => $username]);
+    }
+
+    //Rate limit 5 attempts in 15 mintues.
+    public function isLockedOut($username, $max_attempt, $time_limit)
+    {
+        $sql = "SELECT * from login_attempts WHERE username=:username AND attempt_time>:attempt_time";
+        $attempt_time = date('Y-m-d H:i:s', time() - $time_limit);
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':username' => $username, ':attempt_time' => $attempt_time]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (count($result) < $max_attempt) {
+            return true;
+        } else {
+            return "Too Many attempts. Please wait and try again later.";
+        }
+    }
 }
