@@ -42,6 +42,8 @@ class LoginController
 
         $result = $this->model->loginUser($username, $password);
         if (isset($result[0]['password']) && password_verify($password, $result[0]['password'])) {
+            //delete failed login attempts for the user
+            $this->removeFailedAttempts($username);
             $_SESSION['id'] = $result[0]['id'];
 
             header("Location: ./index.php");
@@ -66,5 +68,11 @@ class LoginController
     public function recordErrorLogin($username)
     {
         $this->model->recordErrorLogin($username);
+    }
+
+    //Remove failed attempts after successful login
+    public function removeFailedAttempts($username)
+    {
+        $this->model->removeFailedAttempts($username);
     }
 }

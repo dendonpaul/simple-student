@@ -73,4 +73,12 @@ class LoginModel
             return "Too Many attempts. Please wait and try again later.";
         }
     }
+
+    //remove failed attempts after succesful login
+    public function removeFailedAttempts($username)
+    {
+        $sql = "DELETE FROM login_attempts WHERE username=:username";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':username' => $username]);
+    }
 }
